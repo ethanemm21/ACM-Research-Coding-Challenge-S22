@@ -4,9 +4,10 @@ from tensorflow import keras
 from sklearn.model_selection import train_test_split
 import numpy as np
 
-# functions to change data to numerical (changing attributes such as color to numbers)
 df = pd.read_csv("mushrooms.csv")
-def convert_data(df):
+
+# function to change non-numerical data to numbers
+def handle_non_numerical_data(df):
     columns = df.columns.values
     for column in columns:
         text_digit_vals = {}
@@ -25,7 +26,9 @@ def convert_data(df):
             df[column] = list(map(convert_to_int, df[column]))
     return df
 
-df = convert_data(df)
+# 0 is edible, 1 is poisonous
+
+df = handle_non_numerical_data(df)
 x = df.drop(columns=["class"])
 y = df["class"]
 
@@ -33,11 +36,12 @@ y = df["class"]
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2)
 
 model = tf.keras.models.Sequential() 
-# sigmoid function is function from 0-1, helps because diagnosis is from 0-1
-model.add(tf.keras.layers.Dense(256, input_shape=x_train.shape[1:], activation="sigmoid")) 
+model.add(tf.keras.layers.Dense(256, input_shape=x_train.shape[1:], activation="sigmoid")) # sigmoid function returns value between 0 and 1
 model.add(tf.keras.layers.Dense(256, activation="sigmoid"))
-model.add(tf.keras.layers.Dense(1, activation="sigmoid")) # outer layer
+model.add(tf.keras.layers.Dense(1, activation="sigmoid")) # output layer, one neuron for one output to classify
 
 model.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])
-model.fit(x_train, y_train, epochs=10)
+
+model.fit(x_train, y_train, validation_split = 0.2, epochs=50) # number of epochs/iterations can be changed
+
 model.evaluate(x_test, y_test)
