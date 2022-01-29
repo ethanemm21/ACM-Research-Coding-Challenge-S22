@@ -6,7 +6,7 @@ To begin the challenge, I had to fully understand what and how binary classifica
 ## Solution
 Although I was not well-versed in Keras or scikit-learn, I remember a [YouTube video](https://www.youtube.com/watch?v=z1PGJ9quPV8&t=583s&ab_channel=Khanrad) I watched, which classified a cancer data set into malign or benign tumors based off various characteristics of the tumor. I recognized the similarity between these problems, and I used a similar algorithm to solve the binary classification of `mushrooms.csv`.
 
-### Sorting Data
+### Modifying Data
 I realized that in `mushrooms.csv`, all the data was in the form of letters. However, when I first approached the problem, I didn't realize the Keras ML algorithm wouldn't work. Therefore, I had to change my data in order to to be numerical data, which the model could train, validate, and test. I added a function which modified the data to fit the model, which I got from [this article](https://pythonprogramming.net/working-with-non-numerical-data-machine-learning-tutorial/). I was then able to successfully test the model. 
 
 ### Machine Learning
