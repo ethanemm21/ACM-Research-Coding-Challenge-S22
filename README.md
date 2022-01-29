@@ -21,7 +21,7 @@ I realized that in `mushrooms.csv`, all the data was in the form of letters. How
 ## Other Sources used to learn (if not previously mentioned)
 [TensorFlow Keras Documentation](https://www.tensorflow.org/api_docs/python/tf/keras)  
 [Keras API Reference](https://keras.io/api/)  
-https://www.youtube.com/watch?v=Zi-0rlM4RDs&ab_channel=deeplizard - Helped me understand the difference between training, validation, and testing splits  
+[YouTube Explanation](https://www.youtube.com/watch?v=Zi-0rlM4RDs&ab_channel=deeplizard) - Helped me understand the difference between training, validation, and testing splits  
 [Binary Classification Tutorial 1](https://www.atmosera.com/blog/binary-classification-with-neural-networks/)  
 [Binary Classification Tutorial 2](https://machinelearningmastery.com/binary-classification-tutorial-with-the-keras-deep-learning-library/)
 
