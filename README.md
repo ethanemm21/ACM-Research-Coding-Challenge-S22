@@ -1,31 +1,29 @@
 # ACM Research Coding Challenge (Spring 2022)
 
-## [](https://github.com/ACM-Research/-DRAFT-Coding-Challenge-S22#no-collaboration-policy)No Collaboration Policy
+## Libraries
+To begin the challenge, I had to fully understand what and how binary classification worked. I read the binary classification Wikipedia, and I decided to use Machine Learning, specifically TensorFlow Keras, to solve the problem of classifying mushrooms as edible or poisonous. Additionally, to help sort the data, I used pandas and NumPy. Finally, I used scikit-learn, to split data into training and testing splits. 
 
-**You may not collaborate with anyone on this challenge.**  You  _are_  allowed to use Internet documentation. If you  _do_  use existing code (either from Github, Stack Overflow, or other sources),  **please cite your sources in the README**.
+## Approach
+Although I was not well-versed in Keras or scikit-learn, I remember a [YouTube video](https://www.youtube.com/watch?v=z1PGJ9quPV8&t=583s&ab_channel=Khanrad) I watched, which classified a cancer data set into malign or benign tumors based off various characteristics of the tumor. I recognized the similarity between these problems, and I used a similar algorithm to solve the binary classification of `mushrooms.csv`.
 
-## [](https://github.com/ACM-Research/-DRAFT-Coding-Challenge-S22#submission-procedure)Submission Procedure
+### Machine Learning
+Using scikit-learn, I used the train_test_split function to split the original data into training and testing splits. By doing this, I would be able to evaluate the validity of the model, not only on the data it's been trained on, but new, test data. I chose to split the data with 80% to train, and 20% to test. 
 
-Please follow the below instructions on how to submit your answers.
+I created a Sequential model from keras, which is a model where you can add neural network layers to the machine learning algorithm. From this, I added a Dense, or dense layer, where I was able to choose the amount of neurons, input shape, and activation function. For my activation function, I chose to use the "sigmoid" function, which is a function that returns a value between 0 and 1 for all values in the neural network. This is especially useful for binary classification, as it simplifies the model. Finally, for the last layer, I included 1 Dense neuron, which is the final returned value of 0 or 1 for "edible" or "poisonous" mushrooms.  
 
-1.  Create a  **public**  fork of this repo and name it  `ACM-Research-Coding-Challenge-S22`. To fork this repo, click the button on the top right and click the "Fork" button.
+Next, I compiled the data. For the optimizer, I chose "adam," which implements the ["Adam algorithm"](https://machinelearningmastery.com/adam-optimization-algorithm-for-deep-learning/). Although I didn't fully understand how the algorithm worked, I understood that it was efficient for large data sets, returned results quickly, and was commonly used for machine learning. For the loss parameter, I chose binary crossentropy, as that is the ["default loss function"](https://machinelearningmastery.com/how-to-choose-loss-functions-when-training-deep-learning-neural-networks/) for binary classification. I then chose accuracy as the metric displayed, to see how accurate the model was. 
 
-2.  Clone the fork of the repo to your computer using  `git clone [the URL of your clone]`. You may need to install Git for this (Google it).
+Finally, to fit the data from `mushrooms.csv`, I fit the data with the training set, and I added a validation split of 20%. By utilizing a validation split, this helps the model not to overfit to the training set, as it validates the model that has been trained. Next, I chose the epochs, or iterations, to be 50, but it can be increased or decreased for the model to become more or less accurate. By around the 21st epoch, the the model consistently has an accuracy of 1.000 on both the training and validation sets. I then evaluted the model with the test splits. With the test splits, the model had an accuracy of 1.000 with a minimal loss. 
 
-3.  Complete the Challenge based on the instructions below.
+### Sorting Data
+I realized that in `mushrooms.csv`, all the data was in the form of letters. However, when I first approached the problem, I didn't realize the Keras ML algorithm wouldn't work. Therefore, I had to change my data in order to to be numerical data, which the model could train, validate, and test. I added a function which modified the data to fit the model, which I got from [this article](https://pythonprogramming.net/working-with-non-numerical-data-machine-learning-tutorial/). I was then able to successfully test the model. 
 
-4.  Submit your solution by filling out this [form](https://acmutd.typeform.com/to/uTpjeA8G).
+## Other Sources used to learn (if not previously mentioned)
+[TensorFlow Keras Documentation](https://www.tensorflow.org/api_docs/python/tf/keras)
+[Keras API Reference](https://keras.io/api/)
+https://www.youtube.com/watch?v=Zi-0rlM4RDs&ab_channel=deeplizard - Helped me understand the difference between training, validation, and testing splits
+[Binary Classification Tutorial 1](https://www.atmosera.com/blog/binary-classification-with-neural-networks/)
+[Binary Classification Tutorial 2](https://machinelearningmastery.com/binary-classification-tutorial-with-the-keras-deep-learning-library/)
 
-## Assessment Criteria 
 
-Submissions will be evaluated holistically and based on a combination of effort, validity of approach, analysis, adherence to the prompt, use of outside resources (encouraged), promptness of your submission, and other factors. Your approach and explanation (detailed below) is the most weighted criteria, and partial solutions are accepted. 
 
-## [](https://github.com/ACM-Research/-DRAFT-Coding-Challenge-S22#question-one)Question One
-
-[Binary classification](https://en.wikipedia.org/wiki/Binary_classification) is a type of classification task that labels elements of a set (i.e. dataset) into two different groups. An example of this type of classification would be identifying if people had a specific disease or not based on certain health characteristics. The dataset found in `mushrooms.csv` holds data (22 different characteristics, specifically) about different types of mushrooms, including a mushroom's cap shape, cap surface texture, cap color, bruising, odor, and more. Remember to split the data into test and training sets (you can choose your own percent split). Information about the meaning of the letters under each column can be found within the file `attributelegend.txt`.
-
-**With the file `mushrooms.csv`, use an algorithm of your choice to classify whether a mushroom is poisonous or edible.**
-
-**You may use any programming language you feel most comfortable. We recommend Python because it is the easiest to implement. You're allowed to use any library or API you want to implement this, just document which ones you used in this README file.** Try to complete this as soon as possible.
-
-Regardless if you can or cannot answer the question, provide a short explanation of how you got your solution or how you think it can be solved in your README.md file. However, we highly recommend giving the challenge a try, you just might learn something new!
